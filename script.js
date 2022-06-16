@@ -9,6 +9,7 @@ class Book {
     this.year = year;
     this.pages = pages;
     this.haveRead = haveRead;
+    this.id = Date.now();
     this.info = function() {
         return title + ' by ' + author + ' (' + year + ')\n' + pages + ' pages'}
     }
@@ -28,11 +29,16 @@ addBookToLibrary(book2);
 addBookToLibrary(book3);
 
 // display books in list
-let books = myLibrary;
-books.forEach(book => {
+
+function addBook(book) {
     let item = document.createElement("li");
     item.innerText = book.info();
-    list.prepend(item);
+    list.append(item);
+}
+
+let books = myLibrary;
+books.forEach(book => {
+    addBook(book);
 })
 
 
@@ -50,3 +56,26 @@ closed.addEventListener("click", () => {
     document.getElementById("newForm").style.display = "none";
 })
 
+//Submit new book info
+const add1 = document.getElementById("add1");
+add1.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.getElementById("newForm").style.display = "none";
+    let newTitle = document.getElementById("title").value;
+    let newAuthor = document.getElementById("author").value;
+    let newYear = document.getElementById("year").value;
+    let newPages = document.getElementById("pages").value;
+    let inputs = document.getElementsByTagName('input');
+    let newRead = "";
+    for(let i = 0; i < inputs.length; i++) {
+        if(inputs[i].type.toLowerCase() == 'radio') {
+            if (inputs[i].checked){
+                newRead = inputs[i].value;
+            }
+        }
+    }
+    let newBook = new Book (newTitle, newAuthor, newYear, newPages, newRead)
+    addBookToLibrary(newBook);
+    addBook(newBook);
+    console.log(myLibrary);
+})
