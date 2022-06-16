@@ -1,4 +1,5 @@
 let myLibrary = [];
+const list = document.getElementById("cards");
 
 class Book {
     constructor(title, author, year, pages, haveRead) {
@@ -24,4 +25,9 @@ addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
 
-console.log(myLibrary);
+let books = myLibrary;
+books.forEach(book => {
+    let item = document.createElement("li");
+    item.innerText = book.info();
+    list.appendChild(item);
+})
