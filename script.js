@@ -29,5 +29,5 @@ let books = myLibrary;
 books.forEach(book => {
     let item = document.createElement("li");
     item.innerText = book.info();
-    list.appendChild(item);
+    list.prepend(item);
 })
