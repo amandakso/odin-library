@@ -102,6 +102,8 @@ add.addEventListener("click", () => {
 const closed = document.getElementById("close");
 closed.addEventListener("click", () => {
     document.getElementById("newForm").style.display = "none";
+    form1 = document.getElementById("form1");
+    form1.reset();
 })
 
 //Submit new book info
@@ -126,6 +128,8 @@ add1.addEventListener("click", (event) => {
     newBook.addId();
     addBookToLibrary(newBook);
     addBook(newBook);
+    form1 = document.getElementById("form1");
+    form1.reset();
 })
 
 
