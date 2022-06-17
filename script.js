@@ -139,8 +139,15 @@ function clearLibrary() {
     };
 }
 
+function updateIds() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        myLibrary[i].id = i;
+    }
+}
+
 function deleteBook(val) {
     myLibrary.splice(val, 1);
+    updateIds();
     clearLibrary();
     displayBooks();
 }
