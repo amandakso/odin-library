@@ -8,9 +8,13 @@ function Book(title, author, year, pages, haveRead) {
     this.year = year;
     this.pages = pages;
     this.haveRead = haveRead;
-    this.id = Date.now();
+    this.id = " ";
     this.info = function() {
         return title + ' by ' + author + ' (' + year + ')\n' + pages + ' pages'}
+    this.addId = function() {
+        newId = myLibrary.length;
+        this.id = newId;
+    }
 }
 
 // add book to library
@@ -19,12 +23,17 @@ function addBookToLibrary(book) {
 }
 
 const book1 = new Book('Dune', 'Frank Herbert', 1984, 687, "haven't read")
-const book2 = new Book('The Amulet of Samarkand', 'Jonathan Stroud', 2003, 462, "haven't read")
-const book3 = new Book('Pride & Prejudice', 'Jane Austen', 1813, 386, 'have read')
-
+book1.addId();
 addBookToLibrary(book1);
+const book2 = new Book('The Amulet of Samarkand', 'Jonathan Stroud', 2003, 462, "haven't read")
+book2.addId();
 addBookToLibrary(book2);
+const book3 = new Book('Pride & Prejudice', 'Jane Austen', 1813, 386, 'have read')
+book3.addId();
 addBookToLibrary(book3);
+
+
+
 
 // display books in list
 
@@ -36,7 +45,12 @@ function addBook(book) {
     let div3 = document.createElement("div");
     let btn = document.createElement("BUTTON");
     let btntxt = document.createTextNode("Delete")
+    btn.classList.add("trash");
     btn.appendChild(btntxt);
+    btn.addEventListener("click", () => {
+        let val = btn.value;
+        deleteBook(val); 
+    });
     let p = document.createElement("p");
     p.innerText = book.info();
     btn.value = book.id;
@@ -50,6 +64,13 @@ function addBook(book) {
     }
     btn2.classList.add("toggle");
     btn2.appendChild(btn2txt);
+    btn2.addEventListener("click", () => {
+        if (btn2.innerText == "Have Read") {
+            btn2.innerText = "Haven't Read";
+        } else {
+            btn2.innerText = "Have Read";
+        };
+    });
     div1.appendChild(p);
     div2.appendChild(btn);
     div3.appendChild(btn2);
@@ -57,8 +78,6 @@ function addBook(book) {
     list.append(item);
 
 }
-
-
 
 
 let books = myLibrary;
@@ -100,10 +119,12 @@ add1.addEventListener("click", (event) => {
         }
     }
     let newBook = new Book (newTitle, newAuthor, newYear, newPages, newRead)
+    newBook.addId();
     addBookToLibrary(newBook);
     addBook(newBook);
 })
 
+/*
 // Toggle Read Status
 let toggles = document.querySelectorAll(".toggle");
 for (let i = 0; i < toggles.length; i++) {
@@ -115,3 +136,19 @@ for (let i = 0; i < toggles.length; i++) {
         };
     })
 }
+*/
+// Delete Books From Library
+
+function deleteBook(val) {
+    console.log(val);
+}
+/*
+for (let i = 0; i < trash.length; i++) {
+    trash[i].addEventListener("click", () => {
+        let val = trash[i].value;
+        deleteBook(val); 
+    });
+};
+
+*/
+
