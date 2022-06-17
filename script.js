@@ -29,10 +29,49 @@ addBookToLibrary(book3);
 // display books in list
 
 function addBook(book) {
+
+    let item = document.createElement("li");
+    let div1 = document.createElement("div");
+    let div2 = document.createElement("div");
+    let div3 = document.createElement("div");
+    let btn = document.createElement("BUTTON");
+    let btntxt = document.createTextNode("Delete")
+    btn.appendChild(btntxt);
+    let p = document.createElement("p");
+    p.innerText = book.info();
+    btn.value = book.id;
+    let btn2txt;
+    let btn2 = document.createElement("BUTTON");
+    if (book.haveRead == "have read") {
+        btn2txt = document.createTextNode("Have Read");
+    }
+    else {
+        btn2txt = document.createTextNode("Haven't Read");
+    }
+    btn2.appendChild(btn2txt);
+    div1.appendChild(p);
+    div2.appendChild(btn);
+    div3.appendChild(btn2);
+    item.appendChild(div1).appendChild(div2).appendChild(div3);
+    list.append(item);
+
+}
+
+
+
+/*
+
+paragraph with text
+have read/ haven't read button
+delete button
+
+orig:
     let item = document.createElement("li");
     item.innerText = book.info();
     list.append(item);
-}
+*/
+
+
 
 let books = myLibrary;
 books.forEach(book => {
