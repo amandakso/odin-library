@@ -75,15 +75,19 @@ function addBook(book) {
     div2.appendChild(btn);
     div3.appendChild(btn2);
     item.appendChild(div1).appendChild(div2).appendChild(div3);
+    item.classList.add("item");
     list.append(item);
 
 }
 
+function displayBooks() {
+    let books = myLibrary;
+    books.forEach(book => {
+        addBook(book);
+    });
+}
 
-let books = myLibrary;
-books.forEach(book => {
-    addBook(book);
-})
+displayBooks();
 
 
 //Button event listeners for adding books
@@ -124,31 +128,21 @@ add1.addEventListener("click", (event) => {
     addBook(newBook);
 })
 
-/*
-// Toggle Read Status
-let toggles = document.querySelectorAll(".toggle");
-for (let i = 0; i < toggles.length; i++) {
-    toggles[i].addEventListener("click", () => {
-        if (toggles[i].innerText == "Have Read") {
-            toggles[i].innerText = "Haven't Read";
-        } else {
-            toggles[i].innerText = "Have Read";
-        };
-    })
-}
-*/
+
 // Delete Books From Library
 
-function deleteBook(val) {
-    console.log(val);
+function clearLibrary() {
+    let items = document.querySelectorAll(".item");
+    for (let i = 0; i < items.length; i++) {
+        l = items[i];
+        l.remove();
+    };
 }
-/*
-for (let i = 0; i < trash.length; i++) {
-    trash[i].addEventListener("click", () => {
-        let val = trash[i].value;
-        deleteBook(val); 
-    });
-};
 
-*/
+function deleteBook(val) {
+    myLibrary.splice(val, 1);
+    clearLibrary();
+    displayBooks();
+}
+
 
