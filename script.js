@@ -131,7 +131,6 @@ add1.addEventListener("click", (event) => {
     let inputs = document.getElementsByTagName('input');
     let newRead = "";
 
-    //verify submissions
     for(let i = 0; i < inputs.length; i++) {
         if(inputs[i].type.toLowerCase() == 'radio') {
             if (inputs[i].checked){
