@@ -48,6 +48,7 @@ function addBook(book) {
     else {
         btn2txt = document.createTextNode("Haven't Read");
     }
+    btn2.classList.add("toggle");
     btn2.appendChild(btn2txt);
     div1.appendChild(p);
     div2.appendChild(btn);
@@ -57,19 +58,6 @@ function addBook(book) {
 
 }
 
-
-
-/*
-
-paragraph with text
-have read/ haven't read button
-delete button
-
-orig:
-    let item = document.createElement("li");
-    item.innerText = book.info();
-    list.append(item);
-*/
 
 
 
@@ -114,5 +102,16 @@ add1.addEventListener("click", (event) => {
     let newBook = new Book (newTitle, newAuthor, newYear, newPages, newRead)
     addBookToLibrary(newBook);
     addBook(newBook);
-    console.log(myLibrary);
 })
+
+// Toggle Read Status
+let toggles = document.querySelectorAll(".toggle");
+for (let i = 0; i < toggles.length; i++) {
+    toggles[i].addEventListener("click", () => {
+        if (toggles[i].innerText == "Have Read") {
+            toggles[i].innerText = "Haven't Read";
+        } else {
+            toggles[i].innerText = "Have Read";
+        };
+    })
+}
