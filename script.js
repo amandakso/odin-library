@@ -2,8 +2,7 @@ let myLibrary = [];
 const list = document.getElementById("cards");
 
 //class for books
-class Book {
-    constructor(title, author, year, pages, haveRead) {
+function Book(title, author, year, pages, haveRead) {
     this.title = title;
     this.author = author;
     this.year = year;
@@ -12,7 +11,6 @@ class Book {
     this.id = Date.now();
     this.info = function() {
         return title + ' by ' + author + ' (' + year + ')\n' + pages + ' pages'}
-    }
 }
 
 // add book to library
