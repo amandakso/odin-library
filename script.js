@@ -49,7 +49,20 @@ function addBook(book) {
     btn.appendChild(btntxt);
     btn.addEventListener("click", () => {
         let val = btn.value;
-        deleteBook(val); 
+        //verify button value
+        if (Number.isInteger(parseInt(val))) {
+            let checkLibrary = myLibrary;
+            checkLibrary = parseInt(checkLibrary.length);
+            if (0 <= val && val < checkLibrary) {
+                deleteBook(val);
+                console.log("success");
+            } else {
+                console.log("fail");
+            }
+        }
+        else {
+            console.log("error");
+        };
     });
     let p = document.createElement("p");
     p.innerText = book.info();
@@ -117,6 +130,8 @@ add1.addEventListener("click", (event) => {
     let newPages = document.getElementById("pages").value;
     let inputs = document.getElementsByTagName('input');
     let newRead = "";
+
+    //verify submissions
     for(let i = 0; i < inputs.length; i++) {
         if(inputs[i].type.toLowerCase() == 'radio') {
             if (inputs[i].checked){
